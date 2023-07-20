@@ -33,7 +33,7 @@ const App = () => {
       );
       const result = response.data.results;
       setRes(result);
-      
+
       // Preload the background image
       const img = new Image();
       img.src = result[0].urls.raw;
