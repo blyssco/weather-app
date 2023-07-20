@@ -1,16 +1,12 @@
 * {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  background-image: url("https://cdn.hswstatic.com/gif/why-is-sky-blue.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  overflow: hidden;
+  background-attachment: fixed;
 }
 
 header {
@@ -29,7 +25,7 @@ input {
   width: 80%;
   border-radius: 20px;
   padding: 2%;
-  font-size: 2rem;
+  font-size: 30px;
   color: rgb(255, 255, 255);
   border: none;
   background-color: #5b6781;
@@ -44,13 +40,9 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.603);
   color: rgba(255, 255, 255, 0.603);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  min-height: 100vh;
-  padding-bottom: 2.6rem;
-  overflow-y: auto;
 }
 
 .container-current-day {
@@ -60,7 +52,7 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 20px;
   margin: 3% 0 0 0;
 }
 
@@ -68,8 +60,8 @@ input:focus {
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  font-size: 50px;
+  margin-bottom: 2%;
 }
 
 .div-temperature {
@@ -77,41 +69,38 @@ input:focus {
   align-items: center;
   flex-direction: row-reverse;
   justify-content: center;
-  font-size: 6rem;
+  font-size: 90px;
   gap: 0.5em;
   padding-bottom: 2rem;
 }
 
 .div-temperature img {
-  width: 100px;
-  height: 100px;
+  scale: 1;
 }
 
 .info-weather-div {
   padding-bottom: 2rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 40px;
 }
 
 .more-infos {
   display: flex;
   gap: 2%;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 20px;
 }
 
 .more-infos div {
-  width: 200px;
+  width: 12vw;
 }
 
 .container-previsions {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  flex-direction: row;
+  gap: 4rem;
   margin-top: 2%;
-  max-height: 60vh;
-  overflow-y: auto;
+  justify-content: center;
 }
 
 .container-previsions div {
@@ -119,19 +108,126 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  background-color: rgba(255, 255, 255, 0.137);
-  padding: 2%;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.219);
+  padding-top: 2%;
   border-radius: 20px;
-  width: 250px;
+  width: 200px;
 }
 
-@media screen and (max-width: 768px) {
-  .container-previsions {
-    max-height: none;
+@media screen and (max-width: 767px) {
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 4%;
+    background-color: #44445e;
   }
 
-  .container-previsions div {
-    margin-bottom: 2rem;
+  h1 {
+    color: white;
+    font-size: large;
   }
+
+  input {
+    width: 80%;
+    border-radius: 20px;
+    padding: 2%;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    border: none;
+    background-color: #5b6781;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.603);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .container-current-day {
+    border-radius: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin: 3% 0 0 0;
+  }
+
+  .container-infos {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 2%;
+  }
+
+  .div-temperature {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 40px;
+    gap: 0.5em;
+    padding-bottom: 2rem;
+  }
+
+  .div-temperature img {
+    scale: 1;
+  }
+
+  .info-weather-div {
+    padding-bottom: 2rem;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .more-infos {
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    font-size: 20px;
+    flex-direction: column;
+    padding-bottom: 20%;
+  }
+
+  .more-infos div {
+    width: 100%;
+  }
+
+  .container-previsions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin-top: 2%;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-previsions div {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1260px) {
+  .container-previsions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 1024px) {
 }

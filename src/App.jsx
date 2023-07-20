@@ -11,7 +11,7 @@ const App = () => {
   const [nameToDisplay, setNameToDisplay] = useState([]);
   const [res, setRes] = useState([]);
   const [temperatures, setTemperatures] = useState([]);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState("");
   const [dayName, setDayName] = useState([]);
   const [currentInfoWeather, setCurrentInfo] = useState([]);
   const [currentFeelsTemp, setCurrentFeels] = useState([]);
@@ -22,7 +22,8 @@ const App = () => {
   const [feelsTemp, setFeels] = useState([]);
   const [wind, setWind] = useState([]);
   const [humidity, setHumidity] = useState([]);
-  const [Currentimage, setCurrentImage] = useState([]);
+  const [Currentimage, setCurrentImage] = useState("");
+  const [showImage, setShowImage] = useState(false);
 
   ///take image from API
   const fetchRequest = async () => {
@@ -55,7 +56,7 @@ const App = () => {
       const currentWind = "Wind : " + responseCurrent.data.wind.speed + " Km/h";
       setCurrentWind(currentWind);
       const currentHumidity =
-        "Wind : " + responseCurrent.data.main.humidity + "%";
+        "Humidity : " + responseCurrent.data.main.humidity + "%";
       setCurrentHumidity(currentHumidity);
     } catch (error) {
       console.error("Error fetching temperatures:", error);
@@ -112,13 +113,15 @@ const App = () => {
   /// Execute functions
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formattedName = nameOfCity.charAt(0).toUpperCase() + nameOfCity.slice(1);
+    const formattedName =
+      nameOfCity.charAt(0).toUpperCase() + nameOfCity.slice(1);
     fetchRequest();
     fetchTemperatures();
     fetchCurrentTemperatures();
     setNameToDisplay(formattedName + ",");
     setNameOfCity("");
     setDayName([currentDay, ...nextDays]);
+    setShowImage(true);
   };
 
   /// execute with enter
@@ -139,9 +142,9 @@ const App = () => {
   /// edit background image
   useEffect(() => {
     if (res.length > 0) {
-      document.body.style.backgroundImage = `url(${res[0].urls.raw})`;
+      document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,0.2665441176470589) 0%, rgba(0,0,0,0.4962359943977591) 0%),url(${res[0].urls.raw})`;
     } else {
-      document.body.style.backgroundImage = "";
+      document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,0.2665441176470589) 0%, rgba(0,0,0,0.4962359943977591) 0%),url("https://cdn.hswstatic.com/gif/why-is-sky-blue.jpg")`;
     }
   }, [res]);
 
@@ -164,10 +167,12 @@ const App = () => {
             </div>
             <div className="div-temperature">
               {currentTemperature}
-              <img
-                src={`https://openweathermap.org/img/wn/${images[0]}@2x.png`}
-                alt=""
-              />
+              {showImage && (
+                <img
+                  className="imageProblem"
+                  src={`https://openweathermap.org/img/wn/${Currentimage}@2x.png`}
+                />
+              )}
             </div>
             <div className="info-weather-div"> {currentInfoWeather}</div>
             <div className="more-infos">
