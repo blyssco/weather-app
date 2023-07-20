@@ -78,7 +78,7 @@ const App = () => {
       );
       const temperatures = response.data.list
         .filter((item) => item.dt_txt.includes("12:00:00")) // Filter data for 12:00:00 time only
-        .map((item) => item.main.temp + "°C");
+        .map((item) => "+-" + " " + item.main.temp + "°C");
       setTemperatures(temperatures);
       const image = response.data.list
         .filter((item) => item.dt_txt.includes("12:00:00")) // Filter data for 12:00:00 time only
