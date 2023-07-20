@@ -24,8 +24,8 @@ const App = () => {
   const [humidity, setHumidity] = useState([]);
   const [Currentimage, setCurrentImage] = useState("");
   const [showImage, setShowImage] = useState(false);
+  const [loadedBackgroundImage, setLoadedBackgroundImage] = useState(null);
 
-  ///take image from API
   const fetchRequest = async () => {
     try {
       const response = await axios.get(
@@ -33,6 +33,13 @@ const App = () => {
       );
       const result = response.data.results;
       setRes(result);
+      
+      // Preload the background image
+      const img = new Image();
+      img.src = result[0].urls.raw;
+      img.onload = () => {
+        setLoadedBackgroundImage(img.src);
+      };
     } catch (error) {
       console.error("Error fetching image:", error);
     }
@@ -139,14 +146,13 @@ const App = () => {
     };
   }, [nameOfCity]);
 
-  /// edit background image
   useEffect(() => {
-    if (res.length > 0) {
-      document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,0.2665441176470589) 0%, rgba(0,0,0,0.4962359943977591) 0%),url(${res[0].urls.raw})`;
+    if (loadedBackgroundImage) {
+      document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,0.2665441176470589) 0%, rgba(0,0,0,0.4962359943977591) 0%),url(${loadedBackgroundImage})`;
     } else {
       document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,0.2665441176470589) 0%, rgba(0,0,0,0.4962359943977591) 0%),url("https://cdn.hswstatic.com/gif/why-is-sky-blue.jpg")`;
     }
-  }, [res]);
+  }, [loadedBackgroundImage]);
 
   return (
     <>
